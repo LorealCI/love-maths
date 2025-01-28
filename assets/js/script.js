@@ -16,6 +16,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+    }
+    })
+
     runGame("addition");
 })
 
@@ -25,15 +31,17 @@ document.addEventListener("DOMContentLoaded", function() {
  */
 function runGame(gameType) {
 
+    document.getElementById("answer-box").value = ""; //this refreshes the answer box after each answer
+    document.getElementById("answer-box").focus(); //this ensures the cursor is in the answer box so we dont have to click it ourselves
+
     //creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
 
     if (gameType === "addition") {
         displayAdditonQuestion(num1, num2);
-    } else if (gameType ==="multiply") {
+    } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
-
     } else if(gameType === "subtract") {
         displaySubtractQuestion(num1, num2);
     } else {
